@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">math</string>
+
+    <string name="start_button_text">start</string>
+    <string name="play_again_button_text">Play again!</string>
+
+    <string name="problemstring">%d %s %d</string>
+
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+
+    <string name="scorestablecolumnheading1">Problem</string>
+    <string name="scorestablecolumnheading2">Correct\nSolution</string>
+    <string name="scorestablecolumnheading3">Your\nSolution</string>
+    <string name="scorestablecolumnheading4">Correct?</string>
+
+</resources>
