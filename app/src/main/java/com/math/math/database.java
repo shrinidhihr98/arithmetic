@@ -5,21 +5,21 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
-public class database {
+class database {
     //To prevent someone from accidentally instantiating this class, make it private.
     private database(){}
 
     //Class that defines table contents: headings
 
-    public static class GameRuns implements BaseColumns {
-        public static final String TABLE_NAME_SCORES = "scores";
-        public static final String TABLE_NAME_GAMES = "games";
-        public static final String COLUMN_NAME_GAME_ID = "gameId";
-        public static final String COLUMN_NAME_PROBLEM = "problem";
-        public static final String COLUMN_NAME_CORRECT_SOLUTION = "correctSolution";
-        public static final String COLUMN_NAME_USER_SOLUTION = "userSolution";
-        public static final String COLUMN_NAME_CORRECT = "correct";
-        public static final String COLUMN_NAME_PROBLEM_ID = "problemId";
+    static class GameRuns implements BaseColumns {
+        static final String TABLE_NAME_SCORES = "scores";
+        static final String TABLE_NAME_GAMES = "games";
+        static final String COLUMN_NAME_GAME_ID = "gameId";
+        static final String COLUMN_NAME_PROBLEM = "problem";
+        static final String COLUMN_NAME_CORRECT_SOLUTION = "correctSolution";
+        static final String COLUMN_NAME_USER_SOLUTION = "userSolution";
+        static final String COLUMN_NAME_CORRECT = "correct";
+        static final String COLUMN_NAME_PROBLEM_ID = "problemId";
 
     }
 
@@ -40,10 +40,10 @@ public class database {
     //Database helper handles database creation and upgrades.
     public static class databaseHelper extends SQLiteOpenHelper {
         //If you change the database schema, you must increment the database version.
-        public static final int DATABASE_VERSION =1;
-        public static final String DATABASE_NAME = "GameRuns.db";
+        static final int DATABASE_VERSION =1;
+        static final String DATABASE_NAME = "GameRuns.db";
 
-        public databaseHelper(Context context){
+        databaseHelper(Context context){
             super(context,DATABASE_NAME, null, DATABASE_VERSION);
         }
 

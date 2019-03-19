@@ -20,19 +20,18 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String TAG = "MainActivity.java";
+    private final String TAG = "MainActivity.java";
 
-    Button button;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Set default values to your preferences.
+//Set default values to your preferences.
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
-        //REMOVE this code:Trial
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         boolean useAddition = sharedPref.getBoolean(getResources().getString(R.string.key_addition_enable), true);
@@ -48,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "onCreate: The shared preference division enable is:" + useDivision);
 
         boolean usePermutation = sharedPref.getBoolean("permutation_enable", false);
-        System.out.println("The shared preference permutation enable is:" + usePermutation);
+        Log.i(TAG, "onCreate: The shared preference permutation enable is:" + usePermutation);
 
         boolean useCombination = sharedPref.getBoolean("combination_enable", false);
-        System.out.println("The shared preference combination enable is:" + useDivision);
+        Log.i(TAG, "onCreate: The shared preference combination enable is:" + useCombination);
 
         button = findViewById(R.id.startbutton);
         button.setOnClickListener(new View.OnClickListener() {

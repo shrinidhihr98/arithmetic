@@ -1,5 +1,5 @@
 package com.math.math;
-import android.content.Context;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -41,18 +41,20 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     // Checks that a preference is a valid numerical value
 
-    Preference.OnPreferenceChangeListener numberCheckListener = new Preference.OnPreferenceChangeListener() {
+    private final Preference.OnPreferenceChangeListener numberCheckListener = new Preference.OnPreferenceChangeListener() {
 
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
             //Check that the string is an integer.
             System.out.println(preference.getKey());
-            if(preference.getKey().equals("numbers_bound") ) {
-                return numberCheck(newValue);
-            }else if(preference.getKey().equals("numbers_bound_permutation")){
-                return numberCheckPermutation(newValue);
-            }else
-                return false;
+            switch (preference.getKey()) {
+                case "numbers_bound":
+                    return numberCheck(newValue);
+                case "numbers_bound_permutation":
+                    return numberCheckPermutation(newValue);
+                default:
+                    return false;
+            }
         }
     };
 
@@ -76,10 +78,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             newValue = Integer.parseInt(newValue.toString());
         }
         catch (Exception e){
+
             e.printStackTrace();
             Toast.makeText(this.getContext(), newValue+" "+getResources().getString(R.string.invalid_string_permutation), Toast.LENGTH_SHORT).show();
             return false;
         }
+        //noinspection ConstantConditions
         if( !newValue.toString().equals("")  &&!newValue.toString().equals("0") && newvalueint <= 12 &&  newValue.toString().matches("\\d*") ) {
             System.out.println("Valid permutation number bound!");
             return true;
@@ -93,10 +97,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
 
     //Checks if atleast one checkbox is selected true, and returns.
-    Preference.OnPreferenceChangeListener selectedCheck = new Preference.OnPreferenceChangeListener() {
+    private final Preference.OnPreferenceChangeListener selectedCheck = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
-            if((boolean)newValue == false) {
+            //noinspection PointlessBooleanExpression
+            if(!((boolean) newValue)) {
                 return checkIfAtleastOne();
             }else
                 return true;

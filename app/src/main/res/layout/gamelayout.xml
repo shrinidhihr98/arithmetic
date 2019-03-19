@@ -2,6 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,7 +14,6 @@
             android:id="@+id/sumtextview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your sum goes here"
             android:textColor="#AA1717"
             android:textSize="60sp"
             app:layout_constraintBottom_toTopOf="@+id/usersolutiontext"
@@ -37,7 +37,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sumtextview" />
+            app:layout_constraintTop_toBottomOf="@+id/sumtextview"
+            android:importantForAutofill="no"
+            tools:targetApi="o"
+            tools:ignore="LabelFor" />
 
 
     </android.support.constraint.ConstraintLayout>

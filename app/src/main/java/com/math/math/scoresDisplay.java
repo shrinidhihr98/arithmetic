@@ -18,18 +18,14 @@ import android.widget.TextView;
 
 public class scoresDisplay extends Fragment {
 
-    private String TAG = "scoresDisplay.java";
-//Required empty public constructor
+    //Required empty public constructor
     public scoresDisplay(){}
-
-    View view;
-    Button playagainbutton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.scoresdisplaylayout, container, false);
+        View view = inflater.inflate(R.layout.scoresdisplaylayout, container, false);
 
 //Get game session data from preferences
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -104,7 +100,8 @@ public class scoresDisplay extends Fragment {
 
 
             tableLayout.addView(tableRow);
-            Log.i(TAG, " Tablerow added! " + problem + " " + correctSolution + " " + userSolution +" " +correct);
+
+            Log.i("scoresDisplay.java", " Tablerow added! " + problem + " " + correctSolution + " " + userSolution +" " +correct);
         }
         cursor.close();
         dbh.close();
@@ -114,7 +111,7 @@ public class scoresDisplay extends Fragment {
         scoreslayout.addView(tableLayout);
 
 
-        playagainbutton = view.findViewById(R.id.playagain);
+        Button playagainbutton = view.findViewById(R.id.playagain);
         playagainbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

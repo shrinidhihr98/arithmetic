@@ -25,15 +25,16 @@ import java.util.Random;
 
 public class game extends Fragment {
 
-    private String TAG = "Game.java";
+    private final String TAG = "Game.java";
 
-    int a,b,solution;
-    int userInputSolution = 0;
-    TextView sumDisplay,usersolutiontext;
-    View view;
-    Random rand;
+    private int a;
+    private int b;
+    private int solution;
+    private int userInputSolution = 0;
+    private TextView usersolutiontext;
+    private View view;
 
-// Required empty public constructor
+    // Required empty public constructor
     public game() {}
 
     @Override
@@ -46,30 +47,31 @@ public class game extends Fragment {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        boolean useAddition = sharedPref.getBoolean("addition_enable", true);
-        System.out.println("The shared preference addition enable is:" + useAddition);
+        boolean useAddition = sharedPref.getBoolean(getResources().getString(R.string.key_addition_enable), true);
+        Log.i(TAG, "onCreate: The shared preference addition enable is:" + useAddition);
 
-        boolean useSubtraction = sharedPref.getBoolean("subtraction_enable", true);
-        System.out.println("The shared preference subtraction enable is:" + useSubtraction);
+        boolean useSubtraction = sharedPref.getBoolean(getResources().getString(R.string.key_subtraction_enable), true);
+        Log.i(TAG, "onCreate: The shared preference subtraction enable is:" + useSubtraction);
 
-        boolean useMultiplication = sharedPref.getBoolean("multiplication_enable", true);
-        System.out.println("The shared preference multiplication enable is:" + useMultiplication);
+        boolean useMultiplication = sharedPref.getBoolean(getResources().getString(R.string.key_multiplication_enable), true);
+        Log.i(TAG, "onCreate: The shared preference multiplication enable is:" + useMultiplication);
 
-        boolean useDivision = sharedPref.getBoolean("division_enable", true);
-        System.out.println("The shared preference division enable is:" + useDivision);
-
-        int numbersBound = Integer.parseInt(sharedPref.getString("numbers_bound","10"));
-        System.out.println("The numbers bound is:" + numbersBound);
-
-        int numbers_bound_permutation = Integer.parseInt(sharedPref.getString("numbers_bound_permutation","10"));
-        System.out.println("The numbers bound is:" + numbers_bound_permutation);
-
+        boolean useDivision = sharedPref.getBoolean(getResources().getString(R.string.key_division_enable), true);
+        Log.i(TAG, "onCreate: The shared preference division enable is:" + useDivision);
 
         boolean usePermutation = sharedPref.getBoolean("permutation_enable", false);
-        System.out.println("The shared preference permutation enable is:" + usePermutation);
+        Log.i(TAG, "onCreate: The shared preference permutation enable is:" + usePermutation);
 
         boolean useCombination = sharedPref.getBoolean("combination_enable", false);
-        System.out.println("The shared preference combination enable is:" + useDivision);
+        Log.i(TAG, "onCreate: The shared preference combination enable is:" + useCombination);
+
+
+        int numbersBound = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound", "10")));
+        Log.i(TAG, "onCreateView: The numbers bound is:" + numbersBound);
+
+        int numbers_bound_permutation = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound_permutation", "10")));
+        Log.i(TAG, "onCreateView: The numbers bound is:" + numbers_bound_permutation);
+
 
         ArrayList<String> operatorArray = new ArrayList<>();
         if (useAddition) {
@@ -91,8 +93,9 @@ public class game extends Fragment {
             operatorArray.add("C");
         }
 
-        System.out.println("The operators used are:" + operatorArray);
-        rand = new Random();
+        Log.i(TAG, "onCreateView: The operators used are:" + operatorArray);
+
+        Random rand = new Random();
         solution = 0;
         String operator = operatorArray.get(rand.nextInt(operatorArray.size()));
         if(operator.equals("P") || operator.equals("C")){
@@ -103,7 +106,7 @@ public class game extends Fragment {
             b = rand.nextInt(numbersBound);
         }
 
-        System.out.println("a generated:"+ a +"\nb generated: "+b);
+        Log.i(TAG, "onCreateView: a generated:"+ a +"\nb generated: "+b);
         switch (operator) {
             case "+":
                 solution = a + b;
@@ -167,9 +170,9 @@ public class game extends Fragment {
                 Log.i(TAG, "Operator not generated! Error!" + operator);
         }
 
-        System.out.println("Solution generated: "+solution);
+        Log.i(TAG, "onCreateView: Solution generated: "+solution);
 
-        sumDisplay = view.findViewById(R.id.sumtextview);
+        TextView sumDisplay = view.findViewById(R.id.sumtextview);
         sumDisplay.setText(getString(R.string.problemstring, a,operator,b));
 
         usersolutiontext = view.findViewById(R.id.usersolutiontext);
@@ -248,17 +251,17 @@ public class game extends Fragment {
         transaction.commit();
     }
 
-    public static void showKeyboard(Context context, View view){
+    private static void showKeyboard(Context context, View view){
         InputMethodManager imm = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
 
     }
-    public static void hideKeyboardFrom(Context context, View view) {
+    private static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    public static int permutation(int a, int b){
+    private static int permutation(int a, int b){
         int p = 1;
         for(int i = a; i>(a-b); i--){
             p =p*i;
@@ -266,18 +269,17 @@ public class game extends Fragment {
         return p;
     }
 
-    public static int combination(int a, int b){
+    private static int combination(int a, int b){
         int p = 1;
         for(int i = a; i>(a-b); i--){
             p =p*i;
         }
         int r =1;
         for(int i =1;i<=b;i++){
-            r=r*1;
+            r=r*i;
         }
 
-        int c = p/r;
-        return c;
+        return p/r;
     }
 
 }
