@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="@string/default_value_true"
+        android:key="@string/key_addition_enable"
+        android:summaryOn="@string/addition_summary_on"
+        android:summaryOff="@string/addition_summary_off"
+        android:title="@string/title_addition_setting"/>
+
+    <SwitchPreference
+        android:defaultValue="@string/default_value_true"
+        android:key="@string/key_subtraction_enable"
+        android:summaryOn="@string/subtraction_summary_on"
+        android:summaryOff="@string/subtraction_summary_off"
+        android:title="@string/title_subtraction_setting"/>
+
+    <SwitchPreference
+        android:defaultValue="@string/default_value_true"
+        android:key="@string/key_multiplication_enable"
+        android:summaryOn="@string/multiplication_summary_on"
+        android:summaryOff="@string/multiplication_summary_off"
+        android:title="@string/title_multiplication_setting"/>
+
+    <SwitchPreference
+        android:defaultValue="@string/default_value_true"
+        android:key="@string/key_division_enable"
+        android:summaryOn="@string/division_summary_on"
+        android:summaryOff="@string/division_summary_off"
+        android:title="@string/title_division_setting"/>
+
+</PreferenceScreen>

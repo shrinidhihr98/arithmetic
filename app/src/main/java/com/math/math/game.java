@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -18,6 +19,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
@@ -41,47 +43,78 @@ public class game extends Fragment {
 // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.gamelayout, container, false);
 
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        boolean useAddition = sharedPref.getBoolean("addition_enable", true);
+        System.out.println("The shared preference addition enable is:" + useAddition);
+
+        boolean useSubtraction = sharedPref.getBoolean("subtraction_enable", true);
+        System.out.println("The shared preference subtraction enable is:" + useSubtraction);
+
+        boolean useMultiplication = sharedPref.getBoolean("multiplication_enable", true);
+        System.out.println("The shared preference multiplication enable is:" + useMultiplication);
+
+        boolean useDivision = sharedPref.getBoolean("division_enable", true);
+        System.out.println("The shared preference division enable is:" + useDivision);
+
+        ArrayList<String> operatorArray = new ArrayList<>();
+        if (useAddition) {
+            operatorArray.add("+");
+        }
+        if (useSubtraction) {
+            operatorArray.add("-");
+        }
+        if (useMultiplication) {
+            operatorArray.add("*");
+        }
+        if (useDivision) {
+            operatorArray.add("/");
+        }
+
+        System.out.println("The operators used are:" + operatorArray);
         rand = new Random();
         a = rand.nextInt(10);
         b = rand.nextInt(10);
         solution = 0;
-        int operatorchoice = rand.nextInt(4);
-        String operator = null;
-        switch (operatorchoice){
-            case 0: operator = "+";
-                solution = a+b;
+        String operator = operatorArray.get(rand.nextInt(operatorArray.size()));
+
+        switch (operator) {
+            case "+":
+                solution = a + b;
                 break;
-            case 1: operator = "-";
-                if(a<b) {
-                    Log.i(TAG, "A:" + a+" B: " +b + " Swap: Swapping in progress!");
+            case "-":
+                if (a < b) {
+                    Log.i(TAG, "A:" + a + " B: " + b + " Swap: Swapping in progress!");
                     int j = a;
                     a = b;
                     b = j;
-                    Log.i(TAG, "A:" + a+" B: " +b + " Swap: Swapping Complete!");
+                    Log.i(TAG, "A:" + a + " B: " + b + " Swap: Swapping Complete!");
                 }
-                solution = a-b;
+                solution = a - b;
                 break;
-            case 2: operator = "*";
-                solution = a*b;
+            case "*":
+                solution = a * b;
                 break;
-            case 3: operator = "/";
+            case "/":
 
-                if(a<b) {
-                    Log.i(TAG, "A:" + a+" B: " +b + " Swap: Swapping in progress!");
+                if (a < b) {
+                    Log.i(TAG, "A:" + a + " B: " + b + " Swap: Swapping in progress!");
 
                     int j = a;
                     a = b;
                     b = j;
-                    Log.i(TAG, "A:" + a+" B: " +b + " Swap: Swapping Complete!");
+                    Log.i(TAG, "A:" + a + " B: " + b + " Swap: Swapping Complete!");
                 }
-                if(b == 0){
-                    Log.i(TAG, "B is zero. Setting to 2.");
-                    b =2;
+                if (b == 0) {
+                    Log.i(TAG, "Division: B is zero. Setting B to 2.");
+                    b = 2;
                 }
 
-                solution = a/b;
+                solution = a / b;
                 break;
-            default: Log.i(TAG,"Operator not generated! Error!"+operatorchoice);
+            default:
+                Log.i(TAG, "Operator not generated! Error!" + operator);
         }
 
         sumDisplay = view.findViewById(R.id.sumtextview);
@@ -172,6 +205,5 @@ public class game extends Fragment {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
 
 }
