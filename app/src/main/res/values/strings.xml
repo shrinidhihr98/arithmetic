@@ -36,10 +36,31 @@
     <string name="division_summary_off">No division questions are asked.</string>
     <string name="title_division_setting">Division</string>
 
+    <string name="key_permutation_enable">permutation_enable</string>
+    <string name="permutation_summary_on">Permutation questions are asked.</string>
+    <string name="permutation_summary_off">No permutation questions are asked.</string>
+    <string name="title_permutation_setting">Permutation</string>
+
+    <string name="key_combination_enable">combination_enable</string>
+    <string name="combination_summary_on">Combination questions are asked.</string>
+    <string name="combination_summary_off">No combination questions are asked.</string>
+    <string name="title_combination_setting">Combination</string>
+
+
+    <string name="check_atleast_one">Please choose atleast one operation.</string>
+
     <string name="default_value_true">true</string>
+    <string name="default_value_false">false</string>
     <string name="key_numbers_bound">numbers_bound</string>
-    <string name="numbers_bound_summary">Use numbers lesser than this bound only.</string>
+    <string name="numbers_bound_summary">Use numbers lesser than this bound only. Use any integer greater than zero.</string>
     <string name="title_numbers_bound">Numbers Bound</string>
-    <string name="invalid_string">This is an invalid string. Please enter a proper number.</string>
+
+
+    <string name="key_numbers_bound_permutation">numbers_bound_permutation</string>
+    <string name="numbers_bound_summary_permutation">Use numbers lesser than this bound only, this applies to permutation and combination questions only. The range is from 1 to 12.</string>
+    <string name="title_numbers_bound_permutation">Permutation and Combination Numbers Bound</string>
+    <string name="invalid_string_permutation">Unable to set new value! Use integer numbers in range 1 to 12.</string>
+
+    <string name="invalid_string">Unable to set new value! Number bounds must be non zero integers.</string>
 
 </resources>

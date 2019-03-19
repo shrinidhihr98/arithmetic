@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
         boolean useDivision = sharedPref.getBoolean(getResources().getString(R.string.key_division_enable), true);
         Log.i(TAG, "onCreate: The shared preference division enable is:" + useDivision);
 
+        boolean usePermutation = sharedPref.getBoolean("permutation_enable", false);
+        System.out.println("The shared preference permutation enable is:" + usePermutation);
+
+        boolean useCombination = sharedPref.getBoolean("combination_enable", false);
+        System.out.println("The shared preference combination enable is:" + useDivision);
 
         button = findViewById(R.id.startbutton);
         button.setOnClickListener(new View.OnClickListener() {

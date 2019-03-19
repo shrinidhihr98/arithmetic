@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="Basic operations">
     <SwitchPreference
         android:defaultValue="@string/default_value_true"
         android:key="@string/key_addition_enable"
@@ -34,5 +35,31 @@
         android:key="@string/key_numbers_bound"
         android:summary="@string/numbers_bound_summary"
         android:title="@string/title_numbers_bound"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Permutation and Combination">
+        <SwitchPreference
+            android:defaultValue="@string/default_value_false"
+            android:key="@string/key_permutation_enable"
+            android:summaryOn="@string/permutation_summary_on"
+            android:summaryOff="@string/permutation_summary_off"
+            android:title="@string/title_permutation_setting"/>
+
+        <SwitchPreference
+            android:defaultValue="@string/default_value_false"
+            android:key="@string/key_combination_enable"
+            android:summaryOn="@string/combination_summary_on"
+            android:summaryOff="@string/combination_summary_off"
+            android:title="@string/title_combination_setting"/>
+
+
+        <EditTextPreference
+            android:defaultValue="5"
+            android:key="@string/key_numbers_bound_permutation"
+            android:summary="@string/numbers_bound_summary_permutation"
+            android:title="@string/title_numbers_bound_permutation"/>
+
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

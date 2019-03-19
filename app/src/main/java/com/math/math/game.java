@@ -61,6 +61,16 @@ public class game extends Fragment {
         int numbersBound = Integer.parseInt(sharedPref.getString("numbers_bound","10"));
         System.out.println("The numbers bound is:" + numbersBound);
 
+        int numbers_bound_permutation = Integer.parseInt(sharedPref.getString("numbers_bound_permutation","10"));
+        System.out.println("The numbers bound is:" + numbers_bound_permutation);
+
+
+        boolean usePermutation = sharedPref.getBoolean("permutation_enable", false);
+        System.out.println("The shared preference permutation enable is:" + usePermutation);
+
+        boolean useCombination = sharedPref.getBoolean("combination_enable", false);
+        System.out.println("The shared preference combination enable is:" + useDivision);
+
         ArrayList<String> operatorArray = new ArrayList<>();
         if (useAddition) {
             operatorArray.add("+");
@@ -74,14 +84,26 @@ public class game extends Fragment {
         if (useDivision) {
             operatorArray.add("/");
         }
+        if(usePermutation){
+            operatorArray.add("P");
+        }
+        if(useCombination){
+            operatorArray.add("C");
+        }
 
         System.out.println("The operators used are:" + operatorArray);
         rand = new Random();
-        a = rand.nextInt(numbersBound);
-        b = rand.nextInt(numbersBound);
         solution = 0;
         String operator = operatorArray.get(rand.nextInt(operatorArray.size()));
+        if(operator.equals("P") || operator.equals("C")){
+            a = rand.nextInt(numbers_bound_permutation);
+            b = rand.nextInt(numbers_bound_permutation);
+        }else {
+            a = rand.nextInt(numbersBound);
+            b = rand.nextInt(numbersBound);
+        }
 
+        System.out.println("a generated:"+ a +"\nb generated: "+b);
         switch (operator) {
             case "+":
                 solution = a + b;
@@ -116,9 +138,36 @@ public class game extends Fragment {
 
                 solution = a / b;
                 break;
+            case "P":
+                if (a < b) {
+                    Log.i(TAG, "A:" + a + " B: " + b + " Swap: Swapping in progress!");
+
+                    int j = a;
+                    a = b;
+                    b = j;
+                    Log.i(TAG, "A:" + a + " B: " + b + " Swap: Swapping Complete!");
+                }
+
+                solution = permutation(a,b);
+                break;
+            case "C":
+                if (a < b) {
+                    Log.i(TAG, "A:" + a + " B: " + b + " Swap: Swapping in progress!");
+
+                    int j = a;
+                    a = b;
+                    b = j;
+                    Log.i(TAG, "A:" + a + " B: " + b + " Swap: Swapping Complete!");
+                }
+
+                solution=combination(a,b);
+                break;
+
             default:
                 Log.i(TAG, "Operator not generated! Error!" + operator);
         }
+
+        System.out.println("Solution generated: "+solution);
 
         sumDisplay = view.findViewById(R.id.sumtextview);
         sumDisplay.setText(getString(R.string.problemstring, a,operator,b));
@@ -207,6 +256,28 @@ public class game extends Fragment {
     public static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public static int permutation(int a, int b){
+        int p = 1;
+        for(int i = a; i>(a-b); i--){
+            p =p*i;
+        }
+        return p;
+    }
+
+    public static int combination(int a, int b){
+        int p = 1;
+        for(int i = a; i>(a-b); i--){
+            p =p*i;
+        }
+        int r =1;
+        for(int i =1;i<=b;i++){
+            r=r*1;
+        }
+
+        int c = p/r;
+        return c;
     }
 
 }
