@@ -90,7 +90,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
         else {
             System.out.println("Invalid number bound!");
-            Toast.makeText(this.getContext(), newValue+" "+getResources().getString(R.string.invalid_string_permutation), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getContext(), getResources().getString(R.string.invalid_string_permutation), Toast.LENGTH_SHORT).show();
             return false;
         }
     }
