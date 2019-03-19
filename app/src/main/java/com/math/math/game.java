@@ -58,6 +58,9 @@ public class game extends Fragment {
         boolean useDivision = sharedPref.getBoolean("division_enable", true);
         System.out.println("The shared preference division enable is:" + useDivision);
 
+        int numbersBound = Integer.parseInt(sharedPref.getString("numbers_bound","10"));
+        System.out.println("The numbers bound is:" + numbersBound);
+
         ArrayList<String> operatorArray = new ArrayList<>();
         if (useAddition) {
             operatorArray.add("+");
@@ -74,8 +77,8 @@ public class game extends Fragment {
 
         System.out.println("The operators used are:" + operatorArray);
         rand = new Random();
-        a = rand.nextInt(10);
-        b = rand.nextInt(10);
+        a = rand.nextInt(numbersBound);
+        b = rand.nextInt(numbersBound);
         solution = 0;
         String operator = operatorArray.get(rand.nextInt(operatorArray.size()));
 

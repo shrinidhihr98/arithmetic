@@ -37,5 +37,9 @@
     <string name="title_division_setting">Division</string>
 
     <string name="default_value_true">true</string>
+    <string name="key_numbers_bound">numbers_bound</string>
+    <string name="numbers_bound_summary">Use numbers lesser than this bound only.</string>
+    <string name="title_numbers_bound">Numbers Bound</string>
+    <string name="invalid_string">This is an invalid string. Please enter a proper number.</string>
 
 </resources>
