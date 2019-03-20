@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.Random;
 
 class questionGenerator {
-    String[] problems, answers;
+    final String[] problems;
+    final String[] answers;
 
     //Constructor
     questionGenerator(boolean[] operators_input, int numbers_bound, int numbers_bound_permutation){
