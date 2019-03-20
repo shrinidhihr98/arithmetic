@@ -167,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Todo: Add an icon as the start button in the mainActivity.
-    //Todo: Add clear user data option in settings.
     //Todo: Add user statistics display.
     //Todo: Add time to answer the game.
 
