@@ -170,6 +170,5 @@ public class MainActivity extends AppCompatActivity {
     //Todo: Add clear user data option in settings.
     //Todo: Add user statistics display.
     //Todo: Add time to answer the game.
-    //Todo: Determine memory usage, and move problem generator to new service/async something if necessary.
 
 }
