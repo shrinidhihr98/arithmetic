@@ -33,6 +33,7 @@
             android:ems="10"
             android:imeOptions="actionDone"
             android:inputType="numberDecimal"
+            android:digits="0123456789"
             app:layout_constraintBottom_toTopOf="@+id/sumtextview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

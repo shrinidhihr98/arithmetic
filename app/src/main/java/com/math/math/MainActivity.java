@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,23 +35,38 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-        boolean useAddition = sharedPref.getBoolean(getResources().getString(R.string.key_addition_enable), true);
-        Log.i(TAG, "onCreate: The shared preference addition enable is:" + useAddition);
+        boolean operators_enabled[] = new boolean[6];
 
-        boolean useSubtraction = sharedPref.getBoolean(getResources().getString(R.string.key_subtraction_enable), true);
-        Log.i(TAG, "onCreate: The shared preference subtraction enable is:" + useSubtraction);
+        operators_enabled[0] = sharedPref.getBoolean(getResources().getString(R.string.key_addition_enable), true);
+        Log.i(TAG, "onCreate: The shared preference addition enable is:" + operators_enabled[0]);
 
-        boolean useMultiplication = sharedPref.getBoolean(getResources().getString(R.string.key_multiplication_enable), true);
-        Log.i(TAG, "onCreate: The shared preference multiplication enable is:" + useMultiplication);
+        operators_enabled[1] = sharedPref.getBoolean(getResources().getString(R.string.key_subtraction_enable), true);
+        Log.i(TAG, "onCreate: The shared preference subtraction enable is:" + operators_enabled[1]);
 
-        boolean useDivision = sharedPref.getBoolean(getResources().getString(R.string.key_division_enable), true);
-        Log.i(TAG, "onCreate: The shared preference division enable is:" + useDivision);
+        operators_enabled[2] = sharedPref.getBoolean(getResources().getString(R.string.key_multiplication_enable), true);
+        Log.i(TAG, "onCreate: The shared preference multiplication enable is:" + operators_enabled[2]);
 
-        boolean usePermutation = sharedPref.getBoolean("permutation_enable", false);
-        Log.i(TAG, "onCreate: The shared preference permutation enable is:" + usePermutation);
+        operators_enabled[3] = sharedPref.getBoolean(getResources().getString(R.string.key_division_enable), true);
+        Log.i(TAG, "onCreate: The shared preference division enable is:" + operators_enabled[3]);
 
-        boolean useCombination = sharedPref.getBoolean("combination_enable", false);
-        Log.i(TAG, "onCreate: The shared preference combination enable is:" + useCombination);
+        operators_enabled[4] = sharedPref.getBoolean("permutation_enable", false);
+        Log.i(TAG, "onCreate: The shared preference permutation enable is:" + operators_enabled[4]);
+
+        operators_enabled[5] = sharedPref.getBoolean("combination_enable", false);
+        Log.i(TAG, "onCreate: The shared preference combination enable is:" + operators_enabled[5]);
+
+
+        int numbers_bound = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound", "10")));
+        Log.i(TAG, "onCreateView: The numbers bound is:" + numbers_bound);
+
+        int numbers_bound_permutation = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound_permutation", "10")));
+        Log.i(TAG, "onCreateView: The numbers bound is:" + numbers_bound_permutation);
+
+        questionGenerator questiongenerator = new questionGenerator(operators_enabled,numbers_bound,numbers_bound_permutation);
+
+        final String[] problems, answers;
+        problems = questiongenerator.problems;
+        answers = questiongenerator.answers;
 
         button = findViewById(R.id.startbutton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
 //Replace current fragment to game fragment
 
                 Fragment gamefragment = new game();
+                Bundle bundle = new Bundle();
+                bundle.putStringArray("problemsArray",problems);
+                bundle.putStringArray("answersArray",answers);
+
+                gamefragment.setArguments(bundle);
                 replaceFragment(gamefragment);
 
             }
@@ -145,6 +166,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    //Todo: Add an icon as the start button in the mainActivity.
+    //Todo: Add clear user data option in settings.
+    //Todo: Add user statistics display.
+    //Todo: Add time to answer the game.
+    //Todo: Determine memory usage, and move problem generator to new service/async something if necessary.
 
 }
