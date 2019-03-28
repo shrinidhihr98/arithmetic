@@ -171,8 +171,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Todo: Add an icon as the start button in the mainActivity.
-    //Todo: Add user statistics display.
+    //Todo: Add an icon as the start button in the mainActivity
     //Todo: Add time to answer the game.
 
 }
