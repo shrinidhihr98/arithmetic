@@ -27,7 +27,8 @@ public class game extends Fragment {
     private TextView usersolutiontext;
 
     private View view;
-    String[] problemsArray, answersArray;
+    private String[] problemsArray;
+    private String[] answersArray;
 
     // Required empty public constructor
     public game() {}

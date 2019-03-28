@@ -92,6 +92,7 @@ public class scoresDisplay extends Fragment {
             problemtext.setText(problem);
             correctSolutiontext.setText(correctSolution);
             userSolutiontext.setText(userSolution);
+            System.out.println("Values of correct are:" + correct);
             if (correct.equalsIgnoreCase("1")) {
                 correcttext.setText(getString(R.string.correct));
             } else {

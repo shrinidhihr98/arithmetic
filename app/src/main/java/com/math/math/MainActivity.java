@@ -162,12 +162,16 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+        if(id == R.id.action_stats){
+            Intent intent = new Intent(this, StatsActivity.class);
+            startActivity(intent);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
     //Todo: Add an icon as the start button in the mainActivity.
-    //Todo: Add clear user data option in settings.
     //Todo: Add user statistics display.
     //Todo: Add time to answer the game.
 
