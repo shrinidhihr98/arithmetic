@@ -37,11 +37,13 @@ public class StatsFragment extends Fragment {
         Log.i("scoresDisplay.java", "The number of incorrect answers is: "+incorrectCount);
 
         dbh.close();
-        float accuracy = 0;
+        double accuracy = 0;
         if(gameCount != 0) {
-            accuracy = (float) correctCount / (gameCount * 10);
+            //accuracy = (float) ((correctCount / (gameCount * 10))*100.0);
+            accuracy = ((double) correctCount / (gameCount))*10.0;
         }
-        String summary = "The number of games played is "+gameCount+".\nTotal correct answers: "+correctCount +"\nTotal incorrect answers: "+incorrectCount+"\nAccuracy: "+String.format(Locale.ENGLISH,"%.2f",accuracy);
+        Log.i("scoresDisplay.java", "The accuracy is: "+accuracy);
+        String summary = "The number of games played is "+gameCount+".\nTotal correct answers: "+correctCount +"\nTotal incorrect answers: "+incorrectCount+"\nAccuracy: "+(String.format(Locale.ENGLISH,"%.2f",accuracy))+"%";
         statsTextView.setText(summary);
 
 
