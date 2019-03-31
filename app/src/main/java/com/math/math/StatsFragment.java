@@ -26,7 +26,7 @@ public class StatsFragment extends Fragment {
         database.databaseHelper dbh = new database.databaseHelper(getActivity());
         SQLiteDatabase db = dbh.getReadableDatabase();
         int gameCount = (int)DatabaseUtils.queryNumEntries(db, database.GameRuns.TABLE_NAME_GAMES);
-        Log.i("scoresDisplay.java", "The number of games played is: "+gameCount);
+        Log.i("scoresDisplay.java", "The number of complete games played is: "+gameCount);
 
         int correctCount =(int) DatabaseUtils.queryNumEntries(db, database.GameRuns.TABLE_NAME_SCORES,
                 database.GameRuns.COLUMN_NAME_CORRECT+"=?", new String[] {"1"});
@@ -39,11 +39,10 @@ public class StatsFragment extends Fragment {
         dbh.close();
         double accuracy = 0;
         if(gameCount != 0) {
-            //accuracy = (float) ((correctCount / (gameCount * 10))*100.0);
-            accuracy = ((double) correctCount / (gameCount))*10.0;
+            accuracy = ( (correctCount * 100.0) / (correctCount+incorrectCount));
         }
         Log.i("scoresDisplay.java", "The accuracy is: "+accuracy);
-        String summary = "The number of games played is "+gameCount+".\nTotal correct answers: "+correctCount +"\nTotal incorrect answers: "+incorrectCount+"\nAccuracy: "+(String.format(Locale.ENGLISH,"%.2f",accuracy))+"%";
+        String summary = "Total correct answers: "+correctCount +"\nTotal incorrect answers: "+incorrectCount+"\nAccuracy: "+(String.format(Locale.ENGLISH,"%.2f",accuracy))+"%";
         statsTextView.setText(summary);
 
 
