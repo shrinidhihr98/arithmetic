@@ -58,6 +58,7 @@ public class game extends Fragment {
 
         usersolutiontext = view.findViewById(R.id.usersolutiontext);
         usersolutiontext.requestFocus();
+
         showKeyboard(getActivity(),usersolutiontext);
 
 
@@ -146,5 +147,13 @@ public class game extends Fragment {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        usersolutiontext = view.findViewById(R.id.usersolutiontext);
+        usersolutiontext.requestFocus();
 
+        showKeyboard(getActivity(),usersolutiontext);
+
+    }
 }

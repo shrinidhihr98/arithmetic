@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 //Set default values to your preferences.
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -109,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
