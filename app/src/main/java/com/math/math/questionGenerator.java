@@ -42,7 +42,10 @@ class questionGenerator {
         Random rand = new Random();
         int solution = 0;
 
-        for(int i = 0; i<10;i++) {
+        int i =0;
+        ArrayList<String> answersList = new ArrayList<>();
+        //for(int i = 0; i<10;i++) {
+        while(i<10){
             String operator = operatorArray.get(rand.nextInt(operatorArray.size()));
             int a;
             int b;
@@ -132,10 +135,27 @@ class questionGenerator {
             }
 
             String problem_generated = a +operator+ b;
-            Log.i(TAG, "onCreateView: Problem generated: " + problem_generated);
-            Log.i(TAG, "onCreateView: Solution generated: " + solution);
-            problems[i] = problem_generated;
-            answers[i] = String.valueOf(solution);
+
+            if(answersList.isEmpty()){
+                answersList.add(String.valueOf(solution));
+                Log.i(TAG, "onCreateView: Problem generated: " + problem_generated);
+                Log.i(TAG, "onCreateView: Solution generated: " + solution);
+
+                problems[i] = problem_generated;
+                answers[i] = String.valueOf(solution);
+                i++;
+                answersList.add(String.valueOf(solution));
+            }
+            if(! answersList.contains(String.valueOf(solution))){
+                Log.i(TAG, "QuestionGenerator: onCreateView: Problem generated: " + problem_generated);
+                Log.i(TAG, "QuestionGenerator: onCreateView: Solution generated: " + solution);
+
+                problems[i] = problem_generated;
+                answers[i] = String.valueOf(solution);
+                i++;
+                answersList.add(String.valueOf(solution));
+            }
+
         }
 
         Log.i(TAG, "questionGenerator: Problems generated:"+ Arrays.toString(problems));

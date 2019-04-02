@@ -62,7 +62,10 @@ public class scoresDisplay extends Fragment {
 
 //Create table layout, add rows and fill data, add filled rows into the table view.
         TableLayout tableLayout = new TableLayout(getActivity());
-
+        tableLayout.setColumnStretchable(0,true);
+        tableLayout.setColumnStretchable(1,true);
+        tableLayout.setColumnStretchable(2,true);
+        tableLayout.setColumnStretchable(3,true);
         View tableHeading = View.inflate(getActivity(), R.layout.scorestablerow, null);
         TextView problemtextHeading = tableHeading.findViewById(R.id.problemtextview);
         TextView correctSolutiontextHeading = tableHeading.findViewById(R.id.solutiontextview);

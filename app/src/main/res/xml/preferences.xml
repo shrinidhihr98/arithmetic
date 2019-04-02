@@ -31,7 +31,7 @@
         android:title="@string/title_division_setting"/>
 
     <EditTextPreference
-        android:defaultValue="10"
+        android:defaultValue="20"
         android:key="@string/key_numbers_bound"
         android:summary="@string/numbers_bound_summary"
         android:title="@string/title_numbers_bound"/>
@@ -39,14 +39,14 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="Permutation and Combination">
         <SwitchPreference
-            android:defaultValue="@string/default_value_false"
+            android:defaultValue="@string/default_value_true"
             android:key="@string/key_permutation_enable"
             android:summaryOn="@string/permutation_summary_on"
             android:summaryOff="@string/permutation_summary_off"
             android:title="@string/title_permutation_setting"/>
 
         <SwitchPreference
-            android:defaultValue="@string/default_value_false"
+            android:defaultValue="@string/default_value_true"
             android:key="@string/key_combination_enable"
             android:summaryOn="@string/combination_summary_on"
             android:summaryOff="@string/combination_summary_off"
@@ -54,7 +54,7 @@
 
 
         <EditTextPreference
-            android:defaultValue="5"
+            android:defaultValue="10"
             android:key="@string/key_numbers_bound_permutation"
             android:summary="@string/numbers_bound_summary_permutation"
             android:title="@string/title_numbers_bound_permutation"/>

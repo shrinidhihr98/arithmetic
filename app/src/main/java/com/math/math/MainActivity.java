@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -51,14 +50,14 @@ public class MainActivity extends AppCompatActivity {
         operators_enabled[3] = sharedPref.getBoolean(getResources().getString(R.string.key_division_enable), true);
         Log.i(TAG, "onCreate: The shared preference division enable is:" + operators_enabled[3]);
 
-        operators_enabled[4] = sharedPref.getBoolean("permutation_enable", false);
+        operators_enabled[4] = sharedPref.getBoolean("permutation_enable", true);
         Log.i(TAG, "onCreate: The shared preference permutation enable is:" + operators_enabled[4]);
 
-        operators_enabled[5] = sharedPref.getBoolean("combination_enable", false);
+        operators_enabled[5] = sharedPref.getBoolean("combination_enable", true);
         Log.i(TAG, "onCreate: The shared preference combination enable is:" + operators_enabled[5]);
 
 
-        int numbers_bound = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound", "10")));
+        int numbers_bound = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound", "20")));
         Log.i(TAG, "onCreateView: The numbers bound is:" + numbers_bound);
 
         int numbers_bound_permutation = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound_permutation", "10")));

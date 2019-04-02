@@ -125,10 +125,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         checked[3] = sharedPref.getBoolean("division_enable", true);
         System.out.println("The shared preference division enable is:" + checked[3]);
 
-        checked[4] = sharedPref.getBoolean("permutation_enable", false);
+        checked[4] = sharedPref.getBoolean("permutation_enable", true);
         System.out.println("The shared preference permutation enable is:" + checked[4]);
 
-        checked[5] = sharedPref.getBoolean("combination_enable", false);
+        checked[5] = sharedPref.getBoolean("combination_enable", true);
         System.out.println("The shared preference combination enable is:" + checked[5]);
 
 
