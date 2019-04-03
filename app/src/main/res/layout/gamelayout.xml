@@ -7,24 +7,23 @@
     android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/gameconstraintlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/sumtextview"
+            android:id="@+id/sum_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#AA1717"
             android:textSize="60sp"
-            app:layout_constraintBottom_toTopOf="@+id/usersolutiontext"
+            app:layout_constraintBottom_toTopOf="@+id/user_solution_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/usersolutiontext"
+            android:id="@+id/user_solution_text"
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:layout_row="1"
@@ -34,11 +33,11 @@
             android:imeOptions="actionDone"
             android:inputType="numberDecimal"
             android:digits="0123456789"
-            app:layout_constraintBottom_toTopOf="@+id/sumtextview"
+            app:layout_constraintBottom_toTopOf="@+id/sum_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sumtextview"
+            app:layout_constraintTop_toBottomOf="@+id/sum_text_view"
             android:importantForAutofill="no"
             tools:targetApi="o"
             tools:ignore="LabelFor" />

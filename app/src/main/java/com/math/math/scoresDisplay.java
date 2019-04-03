@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.util.Log;
@@ -44,7 +45,7 @@ public class scoresDisplay extends Fragment {
                 database.GameRuns.COLUMN_NAME_CORRECT
         };
 
-//Filter results where gameId = 'starttime'
+//Filter results where gameId = 'startTime'
         String selection = database.GameRuns.COLUMN_NAME_GAME_ID + " = ?";
         String[] selectionArgs = {startTime};
 
@@ -62,20 +63,27 @@ public class scoresDisplay extends Fragment {
 
 //Create table layout, add rows and fill data, add filled rows into the table view.
         TableLayout tableLayout = new TableLayout(getActivity());
+
         tableLayout.setColumnStretchable(0,true);
         tableLayout.setColumnStretchable(1,true);
         tableLayout.setColumnStretchable(2,true);
         tableLayout.setColumnStretchable(3,true);
         View tableHeading = View.inflate(getActivity(), R.layout.scorestablerow, null);
-        TextView problemtextHeading = tableHeading.findViewById(R.id.problemtextview);
-        TextView correctSolutiontextHeading = tableHeading.findViewById(R.id.solutiontextview);
-        TextView userSolutiontextHeading = tableHeading.findViewById(R.id.usersolutiontextview);
-        TextView correcttextHeading = tableHeading.findViewById(R.id.correcttextview);
+        TextView problemTextHeading = tableHeading.findViewById(R.id.problem_text_view);
+        TextView correctSolutionTextHeading = tableHeading.findViewById(R.id.solution_text_view);
+        TextView userSolutionTextHeading = tableHeading.findViewById(R.id.user_solution_text_view);
+        TextView correctTextHeading = tableHeading.findViewById(R.id.correct_text_view);
 
-        problemtextHeading.setText(getString(R.string.scorestablecolumnheading1));
-        correctSolutiontextHeading.setText(getString(R.string.scorestablecolumnheading2));
-        userSolutiontextHeading.setText(getString(R.string.scorestablecolumnheading3));
-        correcttextHeading.setText(getString(R.string.scorestablecolumnheading4));
+        problemTextHeading.setText(getString(R.string.scores_table_column_heading_1));
+        correctSolutionTextHeading.setText(getString(R.string.scores_table_column_heading_2));
+        userSolutionTextHeading.setText(getString(R.string.scores_table_column_heading_3));
+        correctTextHeading.setText(getString(R.string.scores_table_column_heading_4));
+        problemTextHeading.setTextColor(Color.parseColor("#1d1a05"));
+        correctSolutionTextHeading.setTextColor(Color.parseColor("#1d1a05"));
+        userSolutionTextHeading.setTextColor(Color.parseColor("#1d1a05"));
+        correctTextHeading.setTextColor(Color.parseColor("#1d1a05"));
+
+
         tableLayout.addView(tableHeading);
 
 
@@ -87,36 +95,41 @@ public class scoresDisplay extends Fragment {
 
             View tableRow = View.inflate(getActivity(), R.layout.scorestablerow, null);
 
-            TextView problemtext = tableRow.findViewById(R.id.problemtextview);
-            TextView correctSolutiontext = tableRow.findViewById(R.id.solutiontextview);
-            TextView userSolutiontext = tableRow.findViewById(R.id.usersolutiontextview);
-            TextView correcttext = tableRow.findViewById(R.id.correcttextview);
+            TextView problemText = tableRow.findViewById(R.id.problem_text_view);
+            TextView correctSolutionText = tableRow.findViewById(R.id.solution_text_view);
+            TextView userSolutionText = tableRow.findViewById(R.id.user_solution_text_view);
+            TextView correctText = tableRow.findViewById(R.id.correct_text_view);
 
-            problemtext.setText(problem);
-            correctSolutiontext.setText(correctSolution);
-            userSolutiontext.setText(userSolution);
+            problemText.setTextColor(Color.parseColor("#1d1a05"));
+            correctSolutionText.setTextColor(Color.parseColor("#1d1a05"));
+            userSolutionText.setTextColor(Color.parseColor("#1d1a05"));
+            correctText.setTextColor(Color.parseColor("#1d1a05"));
+            problemText.setText(problem);
+            correctSolutionText.setText(correctSolution);
+            userSolutionText.setText(userSolution);
             System.out.println("Values of correct are:" + correct);
             if (correct.equalsIgnoreCase("1")) {
-                correcttext.setText(getString(R.string.correct));
+                correctText.setText(getString(R.string.correct));
             } else {
-                correcttext.setText(getString(R.string.incorrect));
+                correctText.setText(getString(R.string.incorrect));
             }
 
 
             tableLayout.addView(tableRow);
 
-            Log.i("scoresDisplay.java", " Tablerow added! " + problem + " " + correctSolution + " " + userSolution +" " +correct);
+            Log.i("scoresDisplay.java", " TableRow added! " + problem + " " + correctSolution + " " + userSolution +" " +correct);
         }
         cursor.close();
         dbh.close();
 
 //Finally add table to parent view
-        ConstraintLayout scoreslayout = view.findViewById(R.id.scoreslayout);
-        scoreslayout.addView(tableLayout);
+        ConstraintLayout scoresLayout = view.findViewById(R.id.scores_layout);
+        scoresLayout.addView(tableLayout);
 
 
-        Button playagainbutton = view.findViewById(R.id.playagain);
-        playagainbutton.setOnClickListener(new View.OnClickListener() {
+        Button playAgainButton = view.findViewById(R.id.play_again);
+        playAgainButton.setTransformationMethod(null);
+        playAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MainActivity.class);

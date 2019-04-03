@@ -20,7 +20,7 @@ public class StatsFragment extends Fragment {
 // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.statsdisplay, container, false);
 
-        TextView statsTextView = view.findViewById(R.id.statstextview);
+        TextView statsTextView = view.findViewById(R.id.stats_text_view);
 
 //Get game data from database
         database.databaseHelper dbh = new database.databaseHelper(getActivity());

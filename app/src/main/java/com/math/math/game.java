@@ -40,6 +40,7 @@ public class game extends Fragment {
 // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.gamelayout, container, false);
 
+
         Bundle bundle =this.getArguments();
         if(bundle != null) {
             problemsArray = bundle.getStringArray("problemsArray");
@@ -51,12 +52,12 @@ public class game extends Fragment {
         final int problemId = sharedPreferences.getInt("problemId", -1);
 
 
-        TextView sumDisplay = view.findViewById(R.id.sumtextview);
+        TextView sumDisplay = view.findViewById(R.id.sum_text_view);
         sumDisplay.setText(problemsArray[problemId]);
 
 
 
-        usersolutiontext = view.findViewById(R.id.usersolutiontext);
+        usersolutiontext = view.findViewById(R.id.user_solution_text);
         usersolutiontext.requestFocus();
 
         showKeyboard(getActivity(),usersolutiontext);
@@ -150,7 +151,7 @@ public class game extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        usersolutiontext = view.findViewById(R.id.usersolutiontext);
+        usersolutiontext = view.findViewById(R.id.user_solution_text);
         usersolutiontext.requestFocus();
 
         showKeyboard(getActivity(),usersolutiontext);

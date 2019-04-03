@@ -10,8 +10,8 @@ import android.widget.Toast;
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootkey){
-        setPreferencesFromResource(R.xml.preferences,rootkey);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey){
+        setPreferencesFromResource(R.xml.preferences,rootKey);
 
         Preference additionEnable = this.findPreference("addition_enable");
         Preference subtractionEnable = this.findPreference("subtraction_enable");
@@ -59,7 +59,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     };
 
     private boolean numberCheck(Object newValue) {
-        System.out.println("Newvalue is :"+newValue);
+        System.out.println("NewValue is :"+newValue);
         if( !newValue.toString().equals("")  &&!newValue.toString().equals("0") &&  newValue.toString().matches("\\d*") ) {
             System.out.println("Valid number bound!");
             return true;
@@ -72,8 +72,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     private boolean numberCheckPermutation(Object newValue) {
-        System.out.println("Newvalue is :"+newValue);
-        int newvalueint = 0;
+        System.out.println("NewValue is :"+newValue);
+        int newValueInt = 0;
         try{
             newValue = Integer.parseInt(newValue.toString());
         }
@@ -84,7 +84,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             return false;
         }
         //noinspection ConstantConditions
-        if( !newValue.toString().equals("")  &&!newValue.toString().equals("0") && newvalueint <= 12 &&  newValue.toString().matches("\\d*") ) {
+        if( !newValue.toString().equals("")  &&!newValue.toString().equals("0") && newValueInt <= 12 &&  newValue.toString().matches("\\d*") ) {
             System.out.println("Valid permutation number bound!");
             return true;
         }
@@ -96,13 +96,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
 
-    //Checks if atleast one checkbox is selected true, and returns.
+    //Checks if at least one checkbox is selected true, and returns.
     private final Preference.OnPreferenceChangeListener selectedCheck = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
             //noinspection PointlessBooleanExpression
             if(!((boolean) newValue)) {
-                return checkIfAtleastOne();
+                return checkIfAtLeastOne();
             }else
                 return true;
 
@@ -110,7 +110,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     };
 
-    private boolean checkIfAtleastOne() {
+    private boolean checkIfAtLeastOne() {
         boolean[] checked = new boolean[6];
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         checked[0] = sharedPref.getBoolean("addition_enable", true);
@@ -137,7 +137,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             if(checked[i]){count++;}
         }
         if(count < 2){
-            Toast.makeText(getContext(), getResources().getString(R.string.check_atleast_one), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getResources().getString(R.string.check_at_least_one), Toast.LENGTH_SHORT).show();
             return false;
         }else
             return true;

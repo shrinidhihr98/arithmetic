@@ -4,28 +4,28 @@
     >
 
     <TextView
-        android:id="@+id/problemtextview"
+        android:id="@+id/problem_text_view"
         android:layout_gravity="center"
         android:padding="5dp"
         android:textSize="15sp"
         />
 
     <TextView
-        android:id="@+id/solutiontextview"
+        android:id="@+id/solution_text_view"
         android:layout_gravity="center"
         android:padding="5dp"
         android:textSize="15sp"
         />
 
     <TextView
-        android:id="@+id/usersolutiontextview"
+        android:id="@+id/user_solution_text_view"
         android:layout_gravity="center"
         android:padding="5dp"
         android:textSize="15sp"
         />
 
     <TextView
-        android:id="@+id/correcttextview"
+        android:id="@+id/correct_text_view"
         android:layout_gravity="center"
         android:padding="5dp"
         android:textSize="15sp"

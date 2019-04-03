@@ -5,11 +5,12 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/statstextview"
+        android:id="@+id/stats_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/user_stats"
         android:gravity="center"
+        android:textColor="#1d1a05"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

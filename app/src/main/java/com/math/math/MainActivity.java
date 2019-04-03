@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
 //Set default values to your preferences.
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
@@ -69,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
         problems = questiongenerator.problems;
         answers = questiongenerator.answers;
 
-        button = findViewById(R.id.startbutton);
+        button = findViewById(R.id.start_button);
+        button.setTransformationMethod(null);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 gameValues.put(database.GameRuns.COLUMN_NAME_GAME_ID,timeStamp);
 
                 long newRowId = db.insert(database.GameRuns.TABLE_NAME_GAMES,null,gameValues);
-                Log.i(TAG, "onClick: in mainactivity, new game session has been added to database:" + newRowId);
+                Log.i(TAG, "onClick: in MainActivity, new game session has been added to database:" + newRowId);
 
                 dbh.close();
 
@@ -131,10 +131,10 @@ public class MainActivity extends AppCompatActivity {
             database.databaseHelper dbh = new database.databaseHelper(this);
             SQLiteDatabase db = dbh.getWritableDatabase();
 
-            String gametable = database.GameRuns.TABLE_NAME_GAMES;
+            String game_table = database.GameRuns.TABLE_NAME_GAMES;
             String whereClause = "gameId =?";
             String[] whereArgs = new String[]{String.valueOf(startTime)};
-            db.delete(gametable, whereClause, whereArgs);
+            db.delete(game_table, whereClause, whereArgs);
 
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             this.finish();

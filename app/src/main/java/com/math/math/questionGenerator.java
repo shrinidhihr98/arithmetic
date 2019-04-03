@@ -91,13 +91,13 @@ class questionGenerator {
                         b = 2;
                     }
 
-                    float possiblesolution = (float) a / b;
-                    Log.i(TAG, "onCreateView: Possible solution:" + possiblesolution);
+                    float possibleSolution = (float) a / b;
+                    Log.i(TAG, "onCreateView: Possible solution:" + possibleSolution);
 
-                    while (!(possiblesolution == (a / b))) {
+                    while (!(possibleSolution == (a / b))) {
                         Log.i(TAG, "onCreateView: Solution is not an integer. A:" + a + " B:" + b + " Decrementing a.");
                         a--;
-                        possiblesolution = (float) a / b;
+                        possibleSolution = (float) a / b;
                     }
 
                     if (a == b && (a * 2) < numbers_bound) {
