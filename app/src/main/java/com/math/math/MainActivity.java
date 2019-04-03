@@ -34,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isUserFirstTime = sharedPref.getBoolean("is_user_first_time",true);
+        if(isUserFirstTime){
+            Intent intro_intent = new Intent(MainActivity.this, introSlider.class);
+            startActivity(intro_intent);
+        }
 
         boolean operators_enabled[] = new boolean[6];
 
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
 
@@ -166,6 +172,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if(id == R.id.action_stats){
             Intent intent = new Intent(this, StatsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if(id == R.id.action_info){
+            Intent intent = new Intent(this, introSlider.class);
             startActivity(intent);
             return true;
         }

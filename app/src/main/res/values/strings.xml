@@ -62,5 +62,15 @@
     <string name="invalid_string">Unable to set new value! Number bounds must be non zero integers.</string>
     <string name="user_stats">User Stats</string>
     <string name="stats_menu_title">Stats</string>
+    <string name="title_activity_intro_slider">introSlider</string>
+    <string name="intro_slide_text_1">Practice your arithmetic skills!\nGive your answers to the questions asked.</string>
+    <string name="intro_slide_text_2">Review your answers after every ten questions.</string>
+    <string name="intro_slide_text_3">Set question preferences in settings.</string>
+    <string name="info">Info</string>
+    <string name="app_icon_content_description">App Icon</string>
+    <string name="finish_content_description">Finish</string>
+    <string name="first_indicator_content_description">First indicator</string>
+    <string name="second_indicator_content_description">Second indicator</string>
+    <string name="third_indicator">Third indicator</string>
 
 </resources>

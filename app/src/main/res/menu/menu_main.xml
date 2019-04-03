@@ -15,4 +15,9 @@ tools:context="com.math.math.MainActivity">
         android:orderInCategory="101"
         android:title="@string/stats_menu_title"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_info"
+        android:orderInCategory="102"
+        android:title="@string/info"
+        app:showAsAction="never"/>
 </menu>
