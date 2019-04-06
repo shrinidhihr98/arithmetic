@@ -34,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                //nothing
+                Log.i(TAG, "onSharedPreferenceChanged: New value detected for key: "+key);
+            }
+        };
+        sharedPref.registerOnSharedPreferenceChangeListener(listener);
         boolean isUserFirstTime = sharedPref.getBoolean("is_user_first_time",true);
         if(isUserFirstTime){
             Intent intro_intent = new Intent(MainActivity.this, introSlider.class);
@@ -65,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "onCreateView: The numbers bound is:" + numbers_bound);
 
         int numbers_bound_permutation = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound_permutation", "10")));
-        Log.i(TAG, "onCreateView: The numbers bound is:" + numbers_bound_permutation);
+        Log.i(TAG, "onCreateView: The permutation numbers bound is:" + numbers_bound_permutation);
 
         questionGenerator questiongenerator = new questionGenerator(operators_enabled,numbers_bound,numbers_bound_permutation);
 

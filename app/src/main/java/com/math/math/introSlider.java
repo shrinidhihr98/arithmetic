@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -74,6 +75,7 @@ public class introSlider extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        private static final String TAG = "IntroSlider.java";
 
         public PlaceholderFragment() {
         }
@@ -96,9 +98,9 @@ public class introSlider extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_intro_slider, container, false);
             TextView textView = rootView.findViewById(R.id.section_label);
 
-            ImageView zero = rootView.findViewById(R.id.intro_indicator_0);
-            ImageView one = rootView.findViewById(R.id.intro_indicator_1);
-            ImageView two = rootView.findViewById(R.id.intro_indicator_2);
+            ImageView zero = getActivity().findViewById(R.id.intro_indicator_0);
+            ImageView one = getActivity().findViewById(R.id.intro_indicator_1);
+            ImageView two = getActivity().findViewById(R.id.intro_indicator_2);
 
             ImageButton finishButton = rootView.findViewById(R.id.finish_button);
             finishButton.setOnClickListener(new View.OnClickListener() {
@@ -114,25 +116,28 @@ public class introSlider extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-
+            Log.i(TAG, "onCreateView: Current fragment number is: "+ getArguments().getInt(ARG_SECTION_NUMBER));
             switch(Objects.requireNonNull(getArguments()).getInt(ARG_SECTION_NUMBER)){
                 case 1: textView.setText(getString(R.string.intro_slide_text_1));
-                zero.setBackgroundResource(R.drawable.indicator_selected);
-                one.setBackgroundResource(R.drawable.indicator_not_selected);
-                two.setBackgroundResource(R.drawable.indicator_not_selected);
+                    zero.setBackgroundResource(R.drawable.indicator_selected);
+                    one.setBackgroundResource(R.drawable.indicator_not_selected);
+                    two.setBackgroundResource(R.drawable.indicator_not_selected);
                     finishButton.setVisibility(View.GONE);
+                    Log.i(TAG, "onCreateView: First frame.");
                     break;
                 case 2: textView.setText(getString(R.string.intro_slide_text_2));
                     one.setBackgroundResource(R.drawable.indicator_selected);
                     zero.setBackgroundResource(R.drawable.indicator_not_selected);
                     two.setBackgroundResource(R.drawable.indicator_not_selected);
                     finishButton.setVisibility(View.GONE);
+                    Log.i(TAG, "onCreateView: Second frame.");
                     break;
                 case 3: textView.setText(getString(R.string.intro_slide_text_3));
                     two.setBackgroundResource(R.drawable.indicator_selected);
                     zero.setBackgroundResource(R.drawable.indicator_not_selected);
                     one.setBackgroundResource(R.drawable.indicator_not_selected);
                     finishButton.setVisibility(View.VISIBLE);
+                    Log.i(TAG, "onCreateView: Third frame.");
                 break;
                 default:
                     break;

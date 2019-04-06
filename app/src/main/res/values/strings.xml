@@ -45,21 +45,17 @@
     <string name="combination_summary_off">No combination questions are asked.</string>
     <string name="title_combination_setting">Combination</string>
 
-
-    <string name="check_at_least_one">Please choose at least one operation.</string>
-
     <string name="default_value_true">true</string>
     <string name="key_numbers_bound">numbers_bound</string>
-    <string name="numbers_bound_summary">Use numbers lesser than this bound only. Use any integer greater than zero.</string>
+    <string name="numbers_bound_summary">Ask questions with numbers within this limit.</string>
     <string name="title_numbers_bound">Numbers Bound</string>
 
 
     <string name="key_numbers_bound_permutation">numbers_bound_permutation</string>
-    <string name="numbers_bound_summary_permutation">Use numbers lesser than this bound only, this applies to permutation and combination questions only. The range is from 1 to 12.</string>
+    <string name="numbers_bound_summary_permutation">Ask permutation and combination questions within this limit only. The range is from 1 to 12.</string>
     <string name="title_numbers_bound_permutation">Permutation and Combination Numbers Bound</string>
-    <string name="invalid_string_permutation">Unable to set new value! Use integer numbers in range 1 to 12.</string>
+    <string name="invalid_string_permutation">Unable to set new value! Use integer numbers in range 10 to 12.</string>
 
-    <string name="invalid_string">Unable to set new value! Number bounds must be non zero integers.</string>
     <string name="user_stats">User Stats</string>
     <string name="stats_menu_title">Stats</string>
     <string name="title_activity_intro_slider">introSlider</string>

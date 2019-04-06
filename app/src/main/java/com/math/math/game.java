@@ -51,11 +51,8 @@ public class game extends Fragment {
 
         final int problemId = sharedPreferences.getInt("problemId", -1);
 
-
         TextView sumDisplay = view.findViewById(R.id.sum_text_view);
         sumDisplay.setText(problemsArray[problemId]);
-
-
 
         usersolutiontext = view.findViewById(R.id.user_solution_text);
         usersolutiontext.requestFocus();
