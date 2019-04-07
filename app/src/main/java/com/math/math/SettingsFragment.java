@@ -48,21 +48,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         public boolean onPreferenceChange(Preference preference, Object newValue) {
             switch (preference.getKey()) {
                 case "numbers_bound":
-                    if(numberCheck(newValue)){
-                        String title = getContext().getString(R.string.title_numbers_bound,(String)newValue);
-                        preference.setTitle(title);
-                        return true;
-                    }else{
-                        return false;
-                    }
+
+                    //String title = getContext().getString(R.string.title_numbers_bound,(String)newValue);
+                    //preference.setTitle(title);
+                    return numberCheck(newValue);
                 case "numbers_bound_permutation":
-                    if(numberCheckPermutation(newValue)){
-                        String title = getContext().getString(R.string.title_numbers_bound_permutation,(String)newValue);
-                        preference.setTitle(title);
-                        return true;
-                    }else{
-                        return false;
-                    }
+                    //String title = getContext().getString(R.string.title_numbers_bound_permutation,(String)newValue);
+                    //preference.setTitle(title);
+                    return numberCheckPermutation(newValue);
                 default:
                     return false;
             }
