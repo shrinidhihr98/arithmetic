@@ -21,6 +21,8 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
 
+
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(content, new SettingsFragment())

@@ -15,7 +15,7 @@
         <activity
             android:name=".introSlider"
             android:label="@string/title_activity_intro_slider"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".StatsActivity"
             android:label="@string/action_stats"

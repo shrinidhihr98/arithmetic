@@ -67,6 +67,8 @@ public class game extends Fragment {
                 if(actionId == EditorInfo.IME_ACTION_DONE){
 
                     String userInput = usersolutiontext.getText().toString().trim();
+                    //Removes leading zeros.
+                    userInput = Integer.valueOf(userInput).toString();
 
                     if(!TextUtils.isEmpty(userInput)) {
 
