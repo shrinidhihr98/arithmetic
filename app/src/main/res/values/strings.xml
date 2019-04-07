@@ -47,13 +47,15 @@
 
     <string name="default_value_true">true</string>
     <string name="key_numbers_bound">numbers_bound</string>
-    <string name="numbers_bound_summary">Ask questions with numbers within this limit.</string>
-    <string name="title_numbers_bound">Numbers Bound</string>
+    <string name="numbers_bound_summary">Ask questions with numbers within this limit. Tap to change.</string>
+    <string name="title_numbers_bound_default" >Numbers Limit</string>
+    <string name="title_numbers_bound" formatted="true">Numbers Limit: %1$s</string>
 
 
     <string name="key_numbers_bound_permutation">numbers_bound_permutation</string>
-    <string name="numbers_bound_summary_permutation">Ask permutation and combination questions within this limit only. The range is from 1 to 12.</string>
-    <string name="title_numbers_bound_permutation">Permutation and Combination Numbers Bound</string>
+    <string name="numbers_bound_summary_permutation">Ask permutation and combination questions within this limit only. The range is from 1 to 12. Tap to change.</string>
+    <string name="title_numbers_bound_permutation_default" >Permutation and Combination Numbers Limit</string>
+    <string name="title_numbers_bound_permutation" formatted="true">Permutation and Combination Numbers Limit: %1$s</string>
     <string name="invalid_string_permutation">Unable to set new value! Use integer numbers in range 10 to 12.</string>
 
     <string name="user_stats">User Stats</string>

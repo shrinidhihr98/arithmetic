@@ -27,6 +27,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Preference numbersBound = this.findPreference("numbers_bound");
         Preference numbersBoundPermutation = this.findPreference("numbers_bound_permutation");
 
+        //numbersBound.setTitle(getContext().getString(R.string.title_numbers_bound,"20"));
+        //numbersBoundPermutation.setTitle(getContext().getString(R.string.title_numbers_bound_permutation,"10"));
         additionEnable.setOnPreferenceChangeListener(selectedCheck);
         subtractionEnable.setOnPreferenceChangeListener(selectedCheck);
         multiplicationEnable.setOnPreferenceChangeListener(selectedCheck);
@@ -46,9 +48,21 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         public boolean onPreferenceChange(Preference preference, Object newValue) {
             switch (preference.getKey()) {
                 case "numbers_bound":
-                    return numberCheck(newValue);
+                    if(numberCheck(newValue)){
+                        String title = getContext().getString(R.string.title_numbers_bound,(String)newValue);
+                        preference.setTitle(title);
+                        return true;
+                    }else{
+                        return false;
+                    }
                 case "numbers_bound_permutation":
-                    return numberCheckPermutation(newValue);
+                    if(numberCheckPermutation(newValue)){
+                        String title = getContext().getString(R.string.title_numbers_bound_permutation,(String)newValue);
+                        preference.setTitle(title);
+                        return true;
+                    }else{
+                        return false;
+                    }
                 default:
                     return false;
             }
@@ -58,7 +72,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private boolean numberCheck(Object newValue) {
         System.out.println("NewValue is :"+newValue);
         int minLimit;
-        if(selectedOperatorsCount() >1){
+        if(selectedOperatorsCount() >2 && basicOperatorsCount() >= 2){
             minLimit = 5;
         }else{
             minLimit = 10;
@@ -85,7 +99,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private boolean numberCheckPermutation(Object newValue) {
         System.out.println("NewValue is :"+newValue);
         int minLimit;
-        if(selectedOperatorsCount() >1){
+        if(permOperatorsCount() == 0){
+            minLimit = 5;
+        } else if(selectedOperatorsCount() >2 && permOperatorsCount() >= 1){
             minLimit = 5;
         }else{
             minLimit = 10;
@@ -114,77 +130,101 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private final Preference.OnPreferenceChangeListener selectedCheck = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
-            int permOperatorsCount = permOperatorsCount();
-            int basicOperatorsCount = basicOperatorsCount();
             int selectedOperatorsCount = selectedOperatorsCount();
-            int minLimit ;
+            String preferenceToBeChanged = preference.getKey();
+
+            int minLimit =10;
             if(!(boolean)newValue){
+                if(selectedOperatorsCount >= 4){//Three will be selected after this change.
+                    return true;
+                }else if(selectedOperatorsCount == 3){ //Two will be selected after this change.
+                    switch (getState(preferenceToBeChanged)){
+                        case 1: if(getNumbersBound() < minLimit){
+                            Toast.makeText(getContext(), "To deselect, set Numbers Limit to at least ten.", Toast.LENGTH_SHORT).show();
+                            return false;
+                            }else{
+                                return true;
+                            }
+                        case 2: if(getPermNumbersBound() < minLimit){
+                            Toast.makeText(getContext(), "To deselect, set Permutation and Combination Numbers Limit to at least ten.", Toast.LENGTH_SHORT).show();
+                            return false;
+                            }else {
+                                return true;
+                            }
+                        case 3: if(getNumbersBound()<minLimit){
+                            Toast.makeText(getContext(), "To deselect, set Numbers Limit to at least ten.", Toast.LENGTH_SHORT).show();
+                            return false;
+                            }else if(getPermNumbersBound()<minLimit){
+                                Toast.makeText(getContext(), "To deselect, set Permutation and Combination Numbers Limit to at least ten.", Toast.LENGTH_SHORT).show();
+                                return false;
+                            }else{
+                                return true;
+                            }
+                    }
+                }else if(selectedOperatorsCount == 2){ //One will be selected after this change.
+                    switch (getState(preferenceToBeChanged)){
+                        case 4:
+                            if(getNumbersBound() < minLimit){
+                                Toast.makeText(getContext(), "To deselect, set Numbers Limit to at least ten.", Toast.LENGTH_SHORT).show();
+                                return false;
+                            }else{
+                                return true;
+                            }
+                        case 5: if(getPermNumbersBound()<minLimit){
+                            Toast.makeText(getContext(), "To deselect, set Permutation and Combination Numbers Limit to at least ten.", Toast.LENGTH_SHORT).show();
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    }
+                }
                 if(selectedOperatorsCount == 1){
                     Toast.makeText(getContext(),"Please choose at least one operation.", Toast.LENGTH_SHORT).show();
                     return false;
-                }
-                if(basicOperatorsCount > 0 && permOperatorsCount == 0){
-                    Log.i(TAG, "onPreferenceChange: basicOperators are being validated.");
-
-                    if(basicOperatorsCount > 3){
-                        minLimit = 5;
-                    }else{
-                        minLimit = 10;
-                    }
-                    Log.i(TAG, "onPreferenceChange: minLimit is"+minLimit);
-                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    int numbersBound = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound", "20")));
-                    if(numbersBound < minLimit){
-                        Toast.makeText(getContext(), "To unselect, set Numbers Limit to at least ten.", Toast.LENGTH_SHORT).show();
-                        return false;
-                    }
-                    return true;
-
-                }
-                if(basicOperatorsCount == 0 && permOperatorsCount > 0){
-                    Log.i(TAG, "onPreferenceChange: permOperators are being validated.");
-                    minLimit = 10;
-
-                    Log.i(TAG, "onPreferenceChange: minLimit is"+minLimit);
-                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    int numbersBoundPermutation = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound_permutation", "10")));
-                    if(numbersBoundPermutation < minLimit){
-                        Toast.makeText(getContext(), "To select only one operator, set Permutation and Combination Numbers Limit to at least ten.", Toast.LENGTH_SHORT).show();
-                        return false;
-                    }
-                    return true;
-                }
-
-                if(basicOperatorsCount == 1){
-                    minLimit = 10;
-                    String preferenceToBeChanged = preference.getKey();
-                    Log.i(TAG, "onPreferenceChange: Preference to be be changed is:"+preferenceToBeChanged);
-                    if(preferenceToBeChanged.equals("addition_enable") ||
-                            preferenceToBeChanged.equals("subtraction_enable") ||
-                            preferenceToBeChanged.equals("multiplication_enable")||
-                            preferenceToBeChanged.equals("division_enable")){
-                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                        int numbersBoundPermutation = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound_permutation", "10")));
-                        if(numbersBoundPermutation < minLimit){
-                            Toast.makeText(getContext(), "To unselect, set Permutation and Combination Numbers Limit to at least ten.", Toast.LENGTH_SHORT).show();
-                            return false;
-                        }
-                        return true;
-                    }else{
-                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                        int numbersBound = Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound", "20")));
-                        if(numbersBound < minLimit){
-                            Toast.makeText(getContext(), "To unselect, set Numbers Limit to at least ten.", Toast.LENGTH_SHORT).show();
-                            return false;
-                        }
-                        return true;
-                    }
                 }
             }
             return true;
         }
     };
 
+    private int getState(String toBeRemoved){
+        /*
+            Returns 1 if two basic operators are left after removing toBeRemoved.
+            Returns 2 if two perm operators are left after removing toBeRemoved.
+            Returns 3 if one basic operator and one perm operator is left after removing toBeRemoved.
+            Returns 4 if only one basic operator is enabled after removing toBeRemoved.
+            Returns 5 if only one perm operator is enabled after removing toBeRemoved.
+        */
+        boolean[] checked = new boolean[6];
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String[] operatorsList = new String[]{"addition_enable", "subtraction_enable", "multiplication_enable", "division_enable", "permutation_enable", "combination_enable"};
+        checked[0] = sharedPref.getBoolean("addition_enable", true);
+        checked[1] = sharedPref.getBoolean("subtraction_enable", true);
+        checked[2] = sharedPref.getBoolean("multiplication_enable", true);
+        checked[3] = sharedPref.getBoolean("division_enable", true);
+        checked[4] = sharedPref.getBoolean("permutation_enable", true);
+        checked[5] = sharedPref.getBoolean("combination_enable", true);
+        for(int i = 0; i< 6; i++){
+            if(operatorsList[i].equals(toBeRemoved)){
+                checked[i] = false;
+            }
+        }
+        int basicCount = 0;
+        int permCount = 0;
+        for(int i =0; i<4;i++){
+            if(checked[i])basicCount++;
+        }
+        for(int i =4; i<6;i++){
+            if(checked[i])permCount++;
+        }
+        if (basicCount == 2) return 1;
+        if (permCount == 2) return 2;
+        if (basicCount == 1 && permCount == 1) return 3;
+        if (basicCount == 1 && permCount == 0) return 4;
+        if (basicCount == 0 && permCount == 1) return 5;
+
+        return 0;
+    }
 
     private int selectedOperatorsCount() {
         boolean[] checked = new boolean[6];
@@ -234,4 +274,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Log.i(TAG, "permOperatorsCount: permOperatorsCount is: "+count);
         return count;
     }
+
+    private int getNumbersBound(){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        return Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound", "20")));
+
+    }
+
+    private int getPermNumbersBound(){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        return Integer.parseInt(Objects.requireNonNull(sharedPref.getString("numbers_bound_permutation", "10")));
+    }
+
 }

@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".introSlider$PlaceholderFragment"
-    >
+    tools:context=".introSlider$PlaceholderFragment">
 
     <TextView
         android:id="@+id/section_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
         android:gravity="center"
-        android:textColor="@color/text"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,16 +21,17 @@
         android:id="@+id/finish_button"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginTop="340dp"
+        android:background="#FFFFFF"
+        android:contentDescription="@string/finish_content_description"
         android:scaleType="fitXY"
         android:src="@drawable/ic_baseline_arrow_forward_24px"
         android:tint="@color/button_background"
-        android:background="#FFFFFF"
-        android:layout_marginTop="340dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"
-        android:contentDescription="@string/finish_content_description" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

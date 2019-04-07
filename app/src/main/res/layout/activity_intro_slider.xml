@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_weight="1"
@@ -40,7 +39,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="160dp"
             android:contentDescription="@string/app_icon_content_description"
             android:src="@mipmap/plus_ic_launcher"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,15 +47,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <ImageView
             android:id="@+id/intro_indicator_0"
             android:layout_width="8dp"
             android:layout_height="8dp"
-
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="60dp"
-            android:background="#000000"
+            android:background="@drawable/indicator_selected"
             android:contentDescription="@string/first_indicator_content_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/intro_indicator_1" />
@@ -65,9 +62,9 @@
             android:id="@+id/intro_indicator_1"
             android:layout_width="8dp"
             android:layout_height="8dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="60dp"
-
-            android:background="#000000"
+            android:background="@drawable/indicator_not_selected"
             android:contentDescription="@string/second_indicator_content_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -78,10 +75,9 @@
             android:id="@+id/intro_indicator_2"
             android:layout_width="8dp"
             android:layout_height="8dp"
-
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="8dp"
             android:layout_marginBottom="60dp"
-            android:background="#000000"
+            android:background="@drawable/indicator_not_selected"
             android:contentDescription="@string/third_indicator"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/intro_indicator_1" />

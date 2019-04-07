@@ -34,7 +34,7 @@
         android:defaultValue="20"
         android:key="@string/key_numbers_bound"
         android:summary="@string/numbers_bound_summary"
-        android:title="@string/title_numbers_bound"/>
+        android:title="@string/title_numbers_bound_default"/>
 
     </PreferenceCategory>
     <PreferenceCategory android:title="Permutation and Combination">
@@ -57,7 +57,7 @@
             android:defaultValue="10"
             android:key="@string/key_numbers_bound_permutation"
             android:summary="@string/numbers_bound_summary_permutation"
-            android:title="@string/title_numbers_bound_permutation"/>
+            android:title="@string/title_numbers_bound_permutation_default"/>
 
 
     </PreferenceCategory>
