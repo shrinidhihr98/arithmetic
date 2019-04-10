@@ -35,14 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-        SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-            @Override
-            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                //nothing
-                Log.i(TAG, "onSharedPreferenceChanged: New value detected for key: "+key);
-            }
-        };
-        sharedPref.registerOnSharedPreferenceChangeListener(listener);
         boolean isUserFirstTime = sharedPref.getBoolean("is_user_first_time",true);
         if(isUserFirstTime){
             Intent intro_intent = new Intent(MainActivity.this, introSlider.class);

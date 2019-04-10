@@ -20,9 +20,6 @@ public class SettingsActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-
-
-
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(content, new SettingsFragment())
@@ -34,7 +31,5 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
-
-
 
 }

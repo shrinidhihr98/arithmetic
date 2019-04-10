@@ -49,10 +49,10 @@
     <string name="key_numbers_bound">numbers_bound</string>
     <string name="numbers_bound_summary">Ask questions with numbers within this limit. Tap to change.</string>
     <string name="title_numbers_bound_default" >Numbers Limit</string>
-    <!--
-    <string name="title_numbers_bound" formatted="true">Numbers Limit: %1$s</string>
-    <string name="title_numbers_bound_permutation" formatted="true">Permutation and Combination Numbers Limit: %1$s</string>
-    -->
+
+    <string name="summary_numbers_bound" formatted="true">Ask questions with numbers within %1$s only. Tap to change.</string>
+    <string name="summary_numbers_bound_permutation" formatted="true">Ask permutation and combination questions within %1$s only. The range is from 1 to 12. Tap to change.</string>
+
     <string name="key_numbers_bound_permutation">numbers_bound_permutation</string>
     <string name="numbers_bound_summary_permutation">Ask permutation and combination questions within this limit only. The range is from 1 to 12. Tap to change.</string>
     <string name="title_numbers_bound_permutation_default" >Permutation and Combination Numbers Limit</string>

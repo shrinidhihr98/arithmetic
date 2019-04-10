@@ -27,8 +27,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Preference numbersBound = this.findPreference("numbers_bound");
         Preference numbersBoundPermutation = this.findPreference("numbers_bound_permutation");
 
-        //numbersBound.setTitle(getContext().getString(R.string.title_numbers_bound,"20"));
-        //numbersBoundPermutation.setTitle(getContext().getString(R.string.title_numbers_bound_permutation,"10"));
+        SharedPreferences sharedPreferences = getPreferenceManager().getSharedPreferences();
+
+        String numBound = sharedPreferences.getString("numbers_bound", "20");
+        String prefNumBound = sharedPreferences.getString("numbers_bound_permutation","10");
+
+        String title = Objects.requireNonNull(getContext()).getString(R.string.summary_numbers_bound,numBound);
+        numbersBound.setSummary(title);
+
+        String prefTitle = getContext().getString(R.string.summary_numbers_bound_permutation,prefNumBound);
+        numbersBoundPermutation.setSummary(prefTitle);
+
         additionEnable.setOnPreferenceChangeListener(selectedCheck);
         subtractionEnable.setOnPreferenceChangeListener(selectedCheck);
         multiplicationEnable.setOnPreferenceChangeListener(selectedCheck);
@@ -49,13 +58,21 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             switch (preference.getKey()) {
                 case "numbers_bound":
 
-                    //String title = getContext().getString(R.string.title_numbers_bound,(String)newValue);
-                    //preference.setTitle(title);
-                    return numberCheck(newValue);
+                    if(numberCheck(newValue)){
+                        String title = Objects.requireNonNull(getContext()).getString(R.string.summary_numbers_bound,(String)newValue);
+                        preference.setSummary(title);
+                        return true;
+                    }else{
+                        return false;
+                    }
                 case "numbers_bound_permutation":
-                    //String title = getContext().getString(R.string.title_numbers_bound_permutation,(String)newValue);
-                    //preference.setTitle(title);
-                    return numberCheckPermutation(newValue);
+                    if(numberCheckPermutation(newValue)){
+                        String title = Objects.requireNonNull(getContext()).getString(R.string.summary_numbers_bound_permutation,(String)newValue);
+                        preference.setSummary(title);
+                        return true;
+                    }else{
+                        return false;
+                    }
                 default:
                     return false;
             }
@@ -63,7 +80,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     };
 
     private boolean numberCheck(Object newValue) {
-        System.out.println("NewValue is :"+newValue);
+        Log.i(TAG, "numberCheck: NewValue is :"+newValue);
         int minLimit;
         if(selectedOperatorsCount() >2 && basicOperatorsCount() >= 2){
             minLimit = 5;

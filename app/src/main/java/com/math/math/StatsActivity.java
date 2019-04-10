@@ -25,4 +25,5 @@ public class StatsActivity extends AppCompatActivity {
                 .replace(content, new StatsFragment())
                 .commit();
     }
+
 }
