@@ -57,7 +57,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         if (preference instanceof CustomDialogPreference) {
             DialogFragment dialogFragment = DialogPrefFragCompat.newInstance(preference.getKey());
             dialogFragment.setTargetFragment(this, 0);
-            dialogFragment.show(getFragmentManager(), null);
+            dialogFragment.show(Objects.requireNonNull(getFragmentManager()), null);
         } else super.onDisplayPreferenceDialog(preference);
     }
 
