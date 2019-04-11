@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -67,10 +68,10 @@ public class game extends Fragment {
                 if(actionId == EditorInfo.IME_ACTION_DONE){
 
                     String userInput = usersolutiontext.getText().toString().trim();
-                    //Removes leading zeros.
-                    userInput = Integer.valueOf(userInput).toString();
 
                     if(!TextUtils.isEmpty(userInput)) {
+                        //Removes leading zeros.
+                        userInput = Integer.valueOf(userInput).toString();
 
                         boolean correct = (answersArray[problemId].equals(userInput));
                         Log.i(TAG, "onEditorAction: Question: "+problemsArray[problemId]+" Answer: "+ answersArray[problemId]+ " User Answer: "+ userInput + " Correct? "+correct);
@@ -120,6 +121,8 @@ public class game extends Fragment {
 
 
                         handled = true;
+                    }else{
+                        Toast.makeText(getActivity(),"Answer cannot be empty!", Toast.LENGTH_SHORT).show();
                     }
                 }
                 return handled;
